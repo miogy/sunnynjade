@@ -24,3 +24,23 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* 종이 질감이 느껴지는 중앙 카드 */
+.paper-sheet {
+  /* 거의 화이트에 가까운 아이보리 */
+  background-color: #fdfbf7;
+
+  /* 종이 표면에 잔잔한 점·섬유가 있는 느낌 (CSS로 만든 노이즈) */
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.06) 1px, transparent 0),
+    radial-gradient(circle at 0px 0px, rgba(0, 0, 0, 0.03) 1px, transparent 0),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(248, 246, 240, 0.7));
+  background-size: 5px 5px, 9px 9px, 100% 100%;
+  background-blend-mode: multiply;
+
+  /* 얇은 종이 테두리 + 살짝 떠 있는 그림자 */
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow:
+    0 18px 40px rgba(15, 23, 42, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.7);
+}

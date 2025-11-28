@@ -1,56 +1,142 @@
 // app/page.tsx
-import Link from "next/link";
+import Image from "next/image";
+import { Homemade_Apple } from "next/font/google";
+
+// 중앙 손글씨 Sunny / & Jade 용 폰트
+const script = Homemade_Apple({
+  subsets: ["latin"],
+  weight: "400",
+});
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#f7f3ee] text-zinc-900 flex items-center justify-center">
-      <div className="max-w-xl mx-auto px-6 py-16 text-center">
-        {/* 상단 로고 타이포 */}
-        <div className="mb-6">
-          <span className="tracking-[0.35em] text-xs uppercase text-zinc-600">
-            Sunny & Jade
-          </span>
-        </div>
+    <main className="min-h-screen bg-[#f4f2ee] text-zinc-900 flex justify-center px-4 py-10 md:py-16">
+      <div className="w-full max-w-5xl mx-auto">
+        {/* 상단 정보 라인 */}
+        <header className="flex justify-between text-[14px] md:text-xs tracking-[0.22em] uppercase mb-16 md:mb-20">
+          <div className="space-y-1">
+            <p>Sunny &amp; Jade</p>
+            <p className="text-[10px] md:text-[11px] tracking-[0.2em]">
+              Modern Romantic Lifestyle
+            </p>
+          </div>
+          <div className="text-right space-y-1">
+            <p>Seoul · Studio</p>
+            <p className="text-[10px] md:text-[11px] tracking-[0.2em]">
+              Established 2025
+            </p>
+          </div>
+        </header>
 
-        {/* 메인 타이틀 */}
-        <h1 className="text-3xl md:text-4xl font-semibold mb-4 leading-snug">
-          Our new Sunny & Jade{" "}
-          <span className="block md:inline">home is in preparation.</span>
-        </h1>
+        {/* 중앙 Welcome + 이미지 + 손글씨 */}
+        <section className="mb-16 md:mb-20">
+          {/* WELCOME 텍스트 */}
+          <p className="text-[11px] md:text-xs tracking-[0.28em] text-center uppercase text-zinc-700 mb-6 md:mb-8">
+            Welcome
+          </p>
 
-        {/* 한글 + 영문 설명 */}
-        <p className="text-sm md:text-base text-zinc-600 leading-relaxed mb-2">
-          그녀들의 취향을 담은 Sunny &amp; Jade의 새로운 사이트를
-          준비하고 있어요.
-        </p>
-        <p className="text-sm md:text-base text-zinc-600 leading-relaxed mb-8">
-          곧 우리들의 일상을 담은 컬렉션을 만날 수 있습니다. 조금만
-          기다려 주세요 ✨
-        </p>
+          {/* 모바일 레이아웃 (Welcome 아래 → 이미지 위로 겹치는 구조) */}
+          <div className="md:hidden flex justify-center">
+            <div className="relative w-[92%]">
+              {/* 이미지 */}
+              <Image
+                src="/images/soon_bg.png" // 실제 이미지 경로
+                alt="Sunny & Jade mood"
+                width={1200}
+                height={800}
+                className="w-full h-auto object-cover border border-zinc-200"
+                priority
+              />
 
-        {/* 버튼 영역 */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
-          {/* 카페24 샵으로 가는 버튼 (URL은 나중에 교체) */}
-          <Link
-            href="https://sunnynjade.com" // 실제 샵 주소로 바꿔줘
-            className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-medium rounded-full border border-zinc-900 bg-zinc-900 text-[#f7f3ee] hover:bg-zinc-800 transition-colors"
-          >
-            Visit Shop
-          </Link>
+              {/* Sunny & Jade 오버레이: 이미지 상단에 글자가 내려오게 */}
+              <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-[90%] flex flex-col items-center">
+                {/* Sunny (15도 기울기) */}
+                <span
+                  className={`${script.className} inline-block text-[60px] leading-none tracking-[0.06em] text-[#C63324]`}
+                  style={{ transform: "rotate(-15deg)" }}
+                >
+                  Sunny
+                </span>
+                {/* & Jade – Sunny보다 아래, Jade의 약 60%가 이미지 안으로 들어가도록 살짝 겹침 */}
+                <span
+                  className={`${script.className} inline-block mt-9 text-[60px] leading-none tracking-[0.06em] text-[#C63324]`}
+                >
+                  &amp; Jade
+                </span>
+              </div>
+            </div>
+          </div>
 
-          {/* 인스타그램 등 다른 채널로 연결하는 서브 버튼 */}
-          <Link
-            href="https://instagram.com" // 실제 인스타 주소로 바꿔줘
-            className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-medium rounded-full border border-zinc-400 text-zinc-700 hover:bg-white/60 transition-colors"
-          >
-            Follow us on Instagram
-          </Link>
-        </div>
+          {/* 데스크탑 레이아웃 (이미지 안 오른쪽 상단에 80% 폭으로 오버레이) */}
+          <div className="hidden md:flex justify-center">
+            <div className="relative w-[60%]">
+              {/* 베이스 이미지 */}
+              <Image
+                src="/images/soon_bg.png"
+                alt="Sunny & Jade mood"
+                width={1200}
+                height={800}
+                className="w-full h-auto object-cover border border-zinc-200"
+                priority
+              />
 
-        {/* 작은 카피 */}
-        <p className="text-[11px] uppercase tracking-[0.25em] text-zinc-500">
-          Modern Romantic Tableware &amp; Lifestyle
-        </p>
+              {/* 손글씨 Sunny / & Jade 오버레이 (이미지 안, 오른쪽 상단, 가로폭 80%) */}
+              <div className="absolute top-[-80] right-[-60] w-[80%] flex flex-col items-end">
+                <span
+                  className={`${script.className} inline-block text-[100px] leading-none tracking-[0.08em] text-[#C63324]`}
+                  style={{ transform: "rotate(-15deg)" }}
+                >
+                  Sunny
+                </span>
+                <span
+                  className={`${script.className} inline-block mt-20 text-[100px] leading-none tracking-[0.05em] text-[#C63324]`}
+                >
+                  &amp; Jade
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ROOM 텍스트 */}
+        <section className="mb-10 md:mb-12 text-center">
+          <p className="text-[14px] md:text-m tracking-[0.28em] uppercase mb-2">
+            Coming Soon
+          </p>
+          <p className="text-[10px] md:text-[11px] tracking-[0.22em] uppercase text-zinc-500">
+            fashion.life style
+          </p>
+        </section>
+
+        {/* 하단 설명 텍스트 – 이미지 폭을 기준으로 그 중 80%만 사용 */}
+        <section className="mt-8 md:mt-10 flex justify-center">
+  {/* Set the width of this div to be the same as the image: 92% mobile, 60% desktop */}
+  <div className="w-[92%] md:w-[60%]">
+    {/* Inside this, only 80% is used as text area */}
+    <div className="mx-auto w-[80%] text-[13px] leading-relaxed text-center space-y-3 text-[#555555]">
+      {/* title line – a bit larger */}
+      <p className="text-[14px] leading-relaxed text-[#555555]">“나는 무엇을 좋아할까?”</p>
+      <p>
+        요즘 우리는 이런 질문을 자주 던지게 됩니다.
+        트렌드는 너무 빠르게 바뀌고, 예쁜 것들은 끝없이 피드에 올라오고,
+        정보는 쉴 새 없이 쏟아져 들어와 우리를 지치게 만듭니다. 
+      </p>
+      <p>우리는 이 조용한 피로를 ‘트렌드 피로감’이라고 불러요.</p>
+      <p>
+        Sunny &amp; Jade는 여기서부터 시작된 패션 &amp; 라이프스타일
+        브랜드입니다. 
+      </p>
+      <p>지금 보고 계신 이 페이지는 새롭게 준비 중인 Sunny
+        &amp; Jade 온라인 공간의 프롤로그이자, 곧 선보일 첫 번째 컬렉션과
+        이야기를 담기 위한 작은 방과 같은 자리입니다.</p>
+      <p>
+        우리의 취향을, 너무 서두르지 않고, 하지만 분명하게 함께 채워 나가요.
+      </p>
+    </div>
+  </div>
+</section>
+
+
       </div>
     </main>
   );
