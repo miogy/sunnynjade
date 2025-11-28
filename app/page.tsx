@@ -10,8 +10,8 @@ const script = Homemade_Apple({
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#f4f2ee] text-zinc-900 flex justify-center px-4 py-10 md:py-16">
-      <div className="w-full max-w-5xl mx-auto">
+    <main className="min-h-screen bg-[#f6f3ee] flex justify-center md:items-center">
+      <div className="w-[92%] md:w-[60%] mx-auto py-10 md:py-0">
         {/* 상단 정보 라인 */}
         <header className="flex justify-between text-[14px] md:text-xs tracking-[0.22em] uppercase mb-16 md:mb-20">
           <div className="space-y-1">
